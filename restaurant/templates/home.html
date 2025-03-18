@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoTable - Home</title>
+
+    <!-- Google Font for Modern Look -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f5f5, #e3e3e3);
+            text-align: center;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 15px 0;
+            font-size: 18px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #333;
+            padding: 10px 20px;
+            font-weight: 500;
+            border-radius: 6px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .navbar a:hover {
+            background: #ff7f00;
+            color: white;
+        }
+
+        /* Main Content */
+        .container {
+            padding: 150px 20px;
+        }
+
+        h1 {
+            font-size: 42px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            font-size: 18px;
+            font-weight: 500;
+            color: white;
+            background: linear-gradient(135deg, #ff7f00, #ff3b00);
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0px 4px 15px rgba(255, 123, 0, 0.4);
+        }
+
+        /* Responsive Layout */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 32px;
+            }
+            .btn {
+                padding: 10px 20px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <a href="{% url 'home' %}">🏠 Home</a>
+        <a href="{% url 'register' %}">📝 Register</a>
+        <a href="{% url 'login' %}">🔑 Login</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1>Welcome to GoTable</h1>
+        <p>Enjoy your dining experience with elegance.</p>
+
+        {% if user.is_authenticated %}
+            <p>Hello, <strong>{{ user.username }}</strong>! Ready to book a table?</p>
+        {% else %}
+            <a href="{% url 'register' %}" class="btn">Register Now</a>
+        {% endif %}
+    </div>
+
+</body>
+</html>
